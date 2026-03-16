@@ -1,20 +1,10 @@
-# MCP Demo — Pricing API + MCP Server
+# MCP Demo — FastMCP hosted in FastAPI
 
-A demo showing how to combine a [FastAPI](https://fastapi.tiangolo.com/) REST API with an [MCP](https://modelcontextprotocol.io/) server using [FastMCP](https://github.com/jlowin/fastmcp), served from a single process.
+A demo showing how to host a [FastMCP](https://github.com/jlowin/fastmcp) server inside a [FastAPI](https://fastapi.tiangolo.com/) app, served from a single process over the streamable-HTTP transport.
 
 ## What it does
 
-The app exposes pricing data for three product categories (`laptop`, `tablet`, `phone`) via:
-
-- **REST endpoints** — standard HTTP routes for health checks and price lookups
-- **MCP tools** — callable by AI agents/LLM clients over the MCP protocol
-
-### REST endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/healthz` | Health check |
-| GET | `/prices/{category}` | Raw prices for a category |
+The app exposes pricing tools for three product categories (`laptop`, `tablet`, `phone`) via MCP, mounted at `/mcp`. A `/healthz` endpoint is included for operational checks.
 
 ### MCP tools (mounted at `/mcp`)
 

@@ -81,7 +81,7 @@ mcp_app = mcp.http_app(path="/")
 # ---------------------------------
 
 app = FastAPI(
-    title="Pricing API + MCP",
+    title="Pricing MCP",
     lifespan=combine_lifespans(app_lifespan, mcp_app.lifespan),
 )
 
@@ -89,14 +89,6 @@ app = FastAPI(
 @app.get("/healthz")
 async def healthz():
     return JSONResponse({"ok": True})
-
-
-@app.get("/prices/{category}")
-async def get_prices(category: str):
-    values = PRICES.get(category)
-    if values is None:
-        return JSONResponse({"error": "unknown category"}, status_code=404)
-    return {"category": category, "prices": values}
 
 
 # Mount MCP under /mcp
